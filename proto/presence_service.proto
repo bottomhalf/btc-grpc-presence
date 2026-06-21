@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package presence;
+
+option go_package = "github.com/bottomhalf/btc-grpc-presence/genproto/presence";
+
+service PresenceService {
+    rpc GetStatus (StatusRequest) returns (StatusResponse);
+}
+
+message StatusRequest {
+    int64 user_id = 1;
+}
+
+message StatusResponse {
+    int64 user_id = 1;
+    string status = 2;
+    string last_seen = 3;
+}

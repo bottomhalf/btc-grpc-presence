@@ -1,0 +1,16 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+go.work.sum
+.env
+.env.local
+.env.*.local
+.vscode/
+.idea/
+/server
+/cmd/server/server

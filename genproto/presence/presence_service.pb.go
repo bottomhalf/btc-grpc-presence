@@ -23,7 +23,7 @@ const (
 
 type StatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -58,16 +58,16 @@ func (*StatusRequest) Descriptor() ([]byte, []int) {
 	return file_proto_presence_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *StatusRequest) GetUserId() int64 {
+func (x *StatusRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type StatusResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
 	LastSeen      string                 `protobuf:"bytes,3,opt,name=last_seen,json=lastSeen,proto3" json:"last_seen,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -104,11 +104,11 @@ func (*StatusResponse) Descriptor() ([]byte, []int) {
 	return file_proto_presence_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *StatusResponse) GetUserId() int64 {
+func (x *StatusResponse) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *StatusResponse) GetStatus() string {
@@ -131,9 +131,9 @@ const file_proto_presence_service_proto_rawDesc = "" +
 	"\n" +
 	"\x1cproto/presence_service.proto\x12\bpresence\"(\n" +
 	"\rStatusRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"^\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"^\n" +
 	"\x0eStatusResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x16\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12\x1b\n" +
 	"\tlast_seen\x18\x03 \x01(\tR\blastSeen2Q\n" +
 	"\x0fPresenceService\x12>\n" +

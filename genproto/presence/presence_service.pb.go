@@ -125,6 +125,218 @@ func (x *StatusResponse) GetLastSeen() string {
 	return ""
 }
 
+type PresenceListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PresenceListRequest) Reset() {
+	*x = PresenceListRequest{}
+	mi := &file_proto_presence_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PresenceListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PresenceListRequest) ProtoMessage() {}
+
+func (x *PresenceListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_presence_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PresenceListRequest.ProtoReflect.Descriptor instead.
+func (*PresenceListRequest) Descriptor() ([]byte, []int) {
+	return file_proto_presence_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *PresenceListRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type Participant struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Avatar        string                 `protobuf:"bytes,5,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	JoinedAt      string                 `protobuf:"bytes,6,opt,name=joined_at,json=joinedAt,proto3" json:"joined_at,omitempty"`
+	Role          string                 `protobuf:"bytes,7,opt,name=role,proto3" json:"role,omitempty"`
+	Status        string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
+	LastSeen      string                 `protobuf:"bytes,9,opt,name=last_seen,json=lastSeen,proto3" json:"last_seen,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Participant) Reset() {
+	*x = Participant{}
+	mi := &file_proto_presence_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Participant) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Participant) ProtoMessage() {}
+
+func (x *Participant) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_presence_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Participant.ProtoReflect.Descriptor instead.
+func (*Participant) Descriptor() ([]byte, []int) {
+	return file_proto_presence_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Participant) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Participant) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *Participant) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
+}
+
+func (x *Participant) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *Participant) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *Participant) GetJoinedAt() string {
+	if x != nil {
+		return x.JoinedAt
+	}
+	return ""
+}
+
+func (x *Participant) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *Participant) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *Participant) GetLastSeen() string {
+	if x != nil {
+		return x.LastSeen
+	}
+	return ""
+}
+
+type PresenceListResponse struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	UserId             string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ConversationGroups []*Participant         `protobuf:"bytes,2,rep,name=conversation_groups,json=conversationGroups,proto3" json:"conversation_groups,omitempty"`
+	ConversationUsers  []*Participant         `protobuf:"bytes,3,rep,name=conversation_users,json=conversationUsers,proto3" json:"conversation_users,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *PresenceListResponse) Reset() {
+	*x = PresenceListResponse{}
+	mi := &file_proto_presence_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PresenceListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PresenceListResponse) ProtoMessage() {}
+
+func (x *PresenceListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_presence_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PresenceListResponse.ProtoReflect.Descriptor instead.
+func (*PresenceListResponse) Descriptor() ([]byte, []int) {
+	return file_proto_presence_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PresenceListResponse) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *PresenceListResponse) GetConversationGroups() []*Participant {
+	if x != nil {
+		return x.ConversationGroups
+	}
+	return nil
+}
+
+func (x *PresenceListResponse) GetConversationUsers() []*Participant {
+	if x != nil {
+		return x.ConversationUsers
+	}
+	return nil
+}
+
 var File_proto_presence_service_proto protoreflect.FileDescriptor
 
 const file_proto_presence_service_proto_rawDesc = "" +
@@ -135,9 +347,27 @@ const file_proto_presence_service_proto_rawDesc = "" +
 	"\x0eStatusResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12\x1b\n" +
-	"\tlast_seen\x18\x03 \x01(\tR\blastSeen2Q\n" +
+	"\tlast_seen\x18\x03 \x01(\tR\blastSeen\".\n" +
+	"\x13PresenceListRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xf6\x01\n" +
+	"\vParticipant\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
+	"\n" +
+	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x14\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\x12\x16\n" +
+	"\x06avatar\x18\x05 \x01(\tR\x06avatar\x12\x1b\n" +
+	"\tjoined_at\x18\x06 \x01(\tR\bjoinedAt\x12\x12\n" +
+	"\x04role\x18\a \x01(\tR\x04role\x12\x16\n" +
+	"\x06status\x18\b \x01(\tR\x06status\x12\x1b\n" +
+	"\tlast_seen\x18\t \x01(\tR\blastSeen\"\xbd\x01\n" +
+	"\x14PresenceListResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12F\n" +
+	"\x13conversation_groups\x18\x02 \x03(\v2\x15.presence.ParticipantR\x12conversationGroups\x12D\n" +
+	"\x12conversation_users\x18\x03 \x03(\v2\x15.presence.ParticipantR\x11conversationUsers2\xa3\x01\n" +
 	"\x0fPresenceService\x12>\n" +
-	"\tGetStatus\x12\x17.presence.StatusRequest\x1a\x18.presence.StatusResponseB;Z9github.com/bottomhalf/btc-grpc-presence/genproto/presenceb\x06proto3"
+	"\tGetStatus\x12\x17.presence.StatusRequest\x1a\x18.presence.StatusResponse\x12P\n" +
+	"\x0fGetPresenceList\x12\x1d.presence.PresenceListRequest\x1a\x1e.presence.PresenceListResponseB;Z9github.com/bottomhalf/btc-grpc-presence/genproto/presenceb\x06proto3"
 
 var (
 	file_proto_presence_service_proto_rawDescOnce sync.Once
@@ -151,19 +381,26 @@ func file_proto_presence_service_proto_rawDescGZIP() []byte {
 	return file_proto_presence_service_proto_rawDescData
 }
 
-var file_proto_presence_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_presence_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_proto_presence_service_proto_goTypes = []any{
-	(*StatusRequest)(nil),  // 0: presence.StatusRequest
-	(*StatusResponse)(nil), // 1: presence.StatusResponse
+	(*StatusRequest)(nil),        // 0: presence.StatusRequest
+	(*StatusResponse)(nil),       // 1: presence.StatusResponse
+	(*PresenceListRequest)(nil),  // 2: presence.PresenceListRequest
+	(*Participant)(nil),          // 3: presence.Participant
+	(*PresenceListResponse)(nil), // 4: presence.PresenceListResponse
 }
 var file_proto_presence_service_proto_depIdxs = []int32{
-	0, // 0: presence.PresenceService.GetStatus:input_type -> presence.StatusRequest
-	1, // 1: presence.PresenceService.GetStatus:output_type -> presence.StatusResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	3, // 0: presence.PresenceListResponse.conversation_groups:type_name -> presence.Participant
+	3, // 1: presence.PresenceListResponse.conversation_users:type_name -> presence.Participant
+	0, // 2: presence.PresenceService.GetStatus:input_type -> presence.StatusRequest
+	2, // 3: presence.PresenceService.GetPresenceList:input_type -> presence.PresenceListRequest
+	1, // 4: presence.PresenceService.GetStatus:output_type -> presence.StatusResponse
+	4, // 5: presence.PresenceService.GetPresenceList:output_type -> presence.PresenceListResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_proto_presence_service_proto_init() }
@@ -177,7 +414,7 @@ func file_proto_presence_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_presence_service_proto_rawDesc), len(file_proto_presence_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

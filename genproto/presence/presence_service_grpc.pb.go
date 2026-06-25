@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PresenceService_GetStatus_FullMethodName = "/presence.PresenceService/GetStatus"
+	PresenceService_GetStatus_FullMethodName       = "/presence.PresenceService/GetStatus"
+	PresenceService_GetPresenceList_FullMethodName = "/presence.PresenceService/GetPresenceList"
 )
 
 // PresenceServiceClient is the client API for PresenceService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PresenceServiceClient interface {
 	GetStatus(ctx context.Context, in *StatusRequest, opts ...grpc.CallOption) (*StatusResponse, error)
+	GetPresenceList(ctx context.Context, in *PresenceListRequest, opts ...grpc.CallOption) (*PresenceListResponse, error)
 }
 
 type presenceServiceClient struct {
@@ -47,11 +49,22 @@ func (c *presenceServiceClient) GetStatus(ctx context.Context, in *StatusRequest
 	return out, nil
 }
 
+func (c *presenceServiceClient) GetPresenceList(ctx context.Context, in *PresenceListRequest, opts ...grpc.CallOption) (*PresenceListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PresenceListResponse)
+	err := c.cc.Invoke(ctx, PresenceService_GetPresenceList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PresenceServiceServer is the server API for PresenceService service.
 // All implementations must embed UnimplementedPresenceServiceServer
 // for forward compatibility.
 type PresenceServiceServer interface {
 	GetStatus(context.Context, *StatusRequest) (*StatusResponse, error)
+	GetPresenceList(context.Context, *PresenceListRequest) (*PresenceListResponse, error)
 	mustEmbedUnimplementedPresenceServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedPresenceServiceServer struct{}
 
 func (UnimplementedPresenceServiceServer) GetStatus(context.Context, *StatusRequest) (*StatusResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetStatus not implemented")
+}
+func (UnimplementedPresenceServiceServer) GetPresenceList(context.Context, *PresenceListRequest) (*PresenceListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPresenceList not implemented")
 }
 func (UnimplementedPresenceServiceServer) mustEmbedUnimplementedPresenceServiceServer() {}
 func (UnimplementedPresenceServiceServer) testEmbeddedByValue()                         {}
@@ -104,6 +120,24 @@ func _PresenceService_GetStatus_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PresenceService_GetPresenceList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PresenceListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PresenceServiceServer).GetPresenceList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PresenceService_GetPresenceList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PresenceServiceServer).GetPresenceList(ctx, req.(*PresenceListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PresenceService_ServiceDesc is the grpc.ServiceDesc for PresenceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var PresenceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetStatus",
 			Handler:    _PresenceService_GetStatus_Handler,
+		},
+		{
+			MethodName: "GetPresenceList",
+			Handler:    _PresenceService_GetPresenceList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

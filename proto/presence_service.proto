@@ -6,6 +6,7 @@ option go_package = "github.com/bottomhalf/btc-grpc-presence/genproto/presence";
 
 service PresenceService {
     rpc GetStatus (StatusRequest) returns (StatusResponse);
+    rpc GetPresenceList (PresenceListRequest) returns (PresenceListResponse);
 }
 
 message StatusRequest {
@@ -16,4 +17,26 @@ message StatusResponse {
     string user_id = 1;
     string status = 2;
     string last_seen = 3;
+}
+
+message PresenceListRequest {
+    string user_id = 1;
+}
+
+message Participant {
+    string user_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string avatar = 5;
+    string joined_at = 6;
+    string role = 7;
+    string status = 8;
+    string last_seen = 9;
+}
+
+message PresenceListResponse {
+    string user_id = 1;
+    repeated Participant conversation_groups = 2;
+    repeated Participant conversation_users = 3;
 }

@@ -176,10 +176,9 @@ type Participant struct {
 	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	Avatar        string                 `protobuf:"bytes,5,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	JoinedAt      string                 `protobuf:"bytes,6,opt,name=joined_at,json=joinedAt,proto3" json:"joined_at,omitempty"`
-	Role          string                 `protobuf:"bytes,7,opt,name=role,proto3" json:"role,omitempty"`
-	Status        string                 `protobuf:"bytes,8,opt,name=status,proto3" json:"status,omitempty"`
-	LastSeen      string                 `protobuf:"bytes,9,opt,name=last_seen,json=lastSeen,proto3" json:"last_seen,omitempty"`
+	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
+	Status        string                 `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
+	LastSeen      int64                  `protobuf:"varint,8,opt,name=last_seen,json=lastSeen,proto3" json:"last_seen,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -249,13 +248,6 @@ func (x *Participant) GetAvatar() string {
 	return ""
 }
 
-func (x *Participant) GetJoinedAt() string {
-	if x != nil {
-		return x.JoinedAt
-	}
-	return ""
-}
-
 func (x *Participant) GetRole() string {
 	if x != nil {
 		return x.Role
@@ -270,25 +262,148 @@ func (x *Participant) GetStatus() string {
 	return ""
 }
 
-func (x *Participant) GetLastSeen() string {
+func (x *Participant) GetLastSeen() int64 {
 	if x != nil {
 		return x.LastSeen
+	}
+	return 0
+}
+
+type ConversationInfo struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ConversationId string                 `protobuf:"bytes,1,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	Type           string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Title          string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Avatar         string                 `protobuf:"bytes,4,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	LastMessageAt  int64                  `protobuf:"varint,5,opt,name=last_message_at,json=lastMessageAt,proto3" json:"last_message_at,omitempty"`
+	MemberCount    int32                  `protobuf:"varint,6,opt,name=member_count,json=memberCount,proto3" json:"member_count,omitempty"`
+	UnreadCount    int32                  `protobuf:"varint,7,opt,name=unread_count,json=unreadCount,proto3" json:"unread_count,omitempty"`
+	IsMuted        bool                   `protobuf:"varint,8,opt,name=is_muted,json=isMuted,proto3" json:"is_muted,omitempty"`
+	IsPinned       bool                   `protobuf:"varint,9,opt,name=is_pinned,json=isPinned,proto3" json:"is_pinned,omitempty"`
+	IsArchived     bool                   `protobuf:"varint,10,opt,name=is_archived,json=isArchived,proto3" json:"is_archived,omitempty"`
+	Members        []*Participant         `protobuf:"bytes,11,rep,name=members,proto3" json:"members,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ConversationInfo) Reset() {
+	*x = ConversationInfo{}
+	mi := &file_proto_presence_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConversationInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConversationInfo) ProtoMessage() {}
+
+func (x *ConversationInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_presence_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConversationInfo.ProtoReflect.Descriptor instead.
+func (*ConversationInfo) Descriptor() ([]byte, []int) {
+	return file_proto_presence_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ConversationInfo) GetConversationId() string {
+	if x != nil {
+		return x.ConversationId
 	}
 	return ""
 }
 
+func (x *ConversationInfo) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *ConversationInfo) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ConversationInfo) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *ConversationInfo) GetLastMessageAt() int64 {
+	if x != nil {
+		return x.LastMessageAt
+	}
+	return 0
+}
+
+func (x *ConversationInfo) GetMemberCount() int32 {
+	if x != nil {
+		return x.MemberCount
+	}
+	return 0
+}
+
+func (x *ConversationInfo) GetUnreadCount() int32 {
+	if x != nil {
+		return x.UnreadCount
+	}
+	return 0
+}
+
+func (x *ConversationInfo) GetIsMuted() bool {
+	if x != nil {
+		return x.IsMuted
+	}
+	return false
+}
+
+func (x *ConversationInfo) GetIsPinned() bool {
+	if x != nil {
+		return x.IsPinned
+	}
+	return false
+}
+
+func (x *ConversationInfo) GetIsArchived() bool {
+	if x != nil {
+		return x.IsArchived
+	}
+	return false
+}
+
+func (x *ConversationInfo) GetMembers() []*Participant {
+	if x != nil {
+		return x.Members
+	}
+	return nil
+}
+
 type PresenceListResponse struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	UserId             string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	ConversationGroups []*Participant         `protobuf:"bytes,2,rep,name=conversation_groups,json=conversationGroups,proto3" json:"conversation_groups,omitempty"`
-	ConversationUsers  []*Participant         `protobuf:"bytes,3,rep,name=conversation_users,json=conversationUsers,proto3" json:"conversation_users,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Conversations []*ConversationInfo    `protobuf:"bytes,2,rep,name=conversations,proto3" json:"conversations,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PresenceListResponse) Reset() {
 	*x = PresenceListResponse{}
-	mi := &file_proto_presence_service_proto_msgTypes[4]
+	mi := &file_proto_presence_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -300,7 +415,7 @@ func (x *PresenceListResponse) String() string {
 func (*PresenceListResponse) ProtoMessage() {}
 
 func (x *PresenceListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_presence_service_proto_msgTypes[4]
+	mi := &file_proto_presence_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,7 +428,7 @@ func (x *PresenceListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PresenceListResponse.ProtoReflect.Descriptor instead.
 func (*PresenceListResponse) Descriptor() ([]byte, []int) {
-	return file_proto_presence_service_proto_rawDescGZIP(), []int{4}
+	return file_proto_presence_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PresenceListResponse) GetUserId() string {
@@ -323,16 +438,9 @@ func (x *PresenceListResponse) GetUserId() string {
 	return ""
 }
 
-func (x *PresenceListResponse) GetConversationGroups() []*Participant {
+func (x *PresenceListResponse) GetConversations() []*ConversationInfo {
 	if x != nil {
-		return x.ConversationGroups
-	}
-	return nil
-}
-
-func (x *PresenceListResponse) GetConversationUsers() []*Participant {
-	if x != nil {
-		return x.ConversationUsers
+		return x.Conversations
 	}
 	return nil
 }
@@ -349,22 +457,34 @@ const file_proto_presence_service_proto_rawDesc = "" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12\x1b\n" +
 	"\tlast_seen\x18\x03 \x01(\tR\blastSeen\".\n" +
 	"\x13PresenceListRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xf6\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xd9\x01\n" +
 	"\vParticipant\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
 	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x14\n" +
 	"\x05email\x18\x04 \x01(\tR\x05email\x12\x16\n" +
-	"\x06avatar\x18\x05 \x01(\tR\x06avatar\x12\x1b\n" +
-	"\tjoined_at\x18\x06 \x01(\tR\bjoinedAt\x12\x12\n" +
-	"\x04role\x18\a \x01(\tR\x04role\x12\x16\n" +
-	"\x06status\x18\b \x01(\tR\x06status\x12\x1b\n" +
-	"\tlast_seen\x18\t \x01(\tR\blastSeen\"\xbd\x01\n" +
+	"\x06avatar\x18\x05 \x01(\tR\x06avatar\x12\x12\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\x12\x16\n" +
+	"\x06status\x18\a \x01(\tR\x06status\x12\x1b\n" +
+	"\tlast_seen\x18\b \x01(\x03R\blastSeen\"\xf5\x02\n" +
+	"\x10ConversationInfo\x12'\n" +
+	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12\x16\n" +
+	"\x06avatar\x18\x04 \x01(\tR\x06avatar\x12&\n" +
+	"\x0flast_message_at\x18\x05 \x01(\x03R\rlastMessageAt\x12!\n" +
+	"\fmember_count\x18\x06 \x01(\x05R\vmemberCount\x12!\n" +
+	"\funread_count\x18\a \x01(\x05R\vunreadCount\x12\x19\n" +
+	"\bis_muted\x18\b \x01(\bR\aisMuted\x12\x1b\n" +
+	"\tis_pinned\x18\t \x01(\bR\bisPinned\x12\x1f\n" +
+	"\vis_archived\x18\n" +
+	" \x01(\bR\n" +
+	"isArchived\x12/\n" +
+	"\amembers\x18\v \x03(\v2\x15.presence.ParticipantR\amembers\"q\n" +
 	"\x14PresenceListResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12F\n" +
-	"\x13conversation_groups\x18\x02 \x03(\v2\x15.presence.ParticipantR\x12conversationGroups\x12D\n" +
-	"\x12conversation_users\x18\x03 \x03(\v2\x15.presence.ParticipantR\x11conversationUsers2\xa3\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12@\n" +
+	"\rconversations\x18\x02 \x03(\v2\x1a.presence.ConversationInfoR\rconversations2\xa3\x01\n" +
 	"\x0fPresenceService\x12>\n" +
 	"\tGetStatus\x12\x17.presence.StatusRequest\x1a\x18.presence.StatusResponse\x12P\n" +
 	"\x0fGetPresenceList\x12\x1d.presence.PresenceListRequest\x1a\x1e.presence.PresenceListResponseB;Z9github.com/bottomhalf/btc-grpc-presence/genproto/presenceb\x06proto3"
@@ -381,21 +501,22 @@ func file_proto_presence_service_proto_rawDescGZIP() []byte {
 	return file_proto_presence_service_proto_rawDescData
 }
 
-var file_proto_presence_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_proto_presence_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_presence_service_proto_goTypes = []any{
 	(*StatusRequest)(nil),        // 0: presence.StatusRequest
 	(*StatusResponse)(nil),       // 1: presence.StatusResponse
 	(*PresenceListRequest)(nil),  // 2: presence.PresenceListRequest
 	(*Participant)(nil),          // 3: presence.Participant
-	(*PresenceListResponse)(nil), // 4: presence.PresenceListResponse
+	(*ConversationInfo)(nil),     // 4: presence.ConversationInfo
+	(*PresenceListResponse)(nil), // 5: presence.PresenceListResponse
 }
 var file_proto_presence_service_proto_depIdxs = []int32{
-	3, // 0: presence.PresenceListResponse.conversation_groups:type_name -> presence.Participant
-	3, // 1: presence.PresenceListResponse.conversation_users:type_name -> presence.Participant
+	3, // 0: presence.ConversationInfo.members:type_name -> presence.Participant
+	4, // 1: presence.PresenceListResponse.conversations:type_name -> presence.ConversationInfo
 	0, // 2: presence.PresenceService.GetStatus:input_type -> presence.StatusRequest
 	2, // 3: presence.PresenceService.GetPresenceList:input_type -> presence.PresenceListRequest
 	1, // 4: presence.PresenceService.GetStatus:output_type -> presence.StatusResponse
-	4, // 5: presence.PresenceService.GetPresenceList:output_type -> presence.PresenceListResponse
+	5, // 5: presence.PresenceService.GetPresenceList:output_type -> presence.PresenceListResponse
 	4, // [4:6] is the sub-list for method output_type
 	2, // [2:4] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -414,7 +535,7 @@ func file_proto_presence_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_presence_service_proto_rawDesc), len(file_proto_presence_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

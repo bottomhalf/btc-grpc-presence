@@ -29,14 +29,26 @@ message Participant {
     string last_name = 3;
     string email = 4;
     string avatar = 5;
-    string joined_at = 6;
-    string role = 7;
-    string status = 8;
-    string last_seen = 9;
+    string role = 6;
+    string status = 7;
+    int64  last_seen = 8;
+}
+
+message ConversationInfo {
+    string conversation_id = 1;
+    string type = 2;
+    string title = 3;
+    string avatar = 4;
+    int64  last_message_at = 5;
+    int32  member_count = 6;
+    int32  unread_count = 7;
+    bool   is_muted = 8;
+    bool   is_pinned = 9;
+    bool   is_archived = 10;
+    repeated Participant members = 11;
 }
 
 message PresenceListResponse {
     string user_id = 1;
-    repeated Participant conversation_groups = 2;
-    repeated Participant conversation_users = 3;
+    repeated ConversationInfo conversations = 2;
 }
